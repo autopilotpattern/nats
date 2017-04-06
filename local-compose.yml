@@ -1,0 +1,28 @@
+version: '2.1'
+services:
+    nats:
+        build: ./
+        restart: always
+        ports:
+          - "4222:4222"
+          - "6222:6222"
+          - "8222:8222"
+        links:
+          - consul:consul
+        environment:
+          - CONSUL=consul
+          - CONSUL_AGENT=1
+          - LOG_LEVEL=debug
+
+    consul:
+        image: autopilotpattern/consul:0.7.2-r0.8
+        command: >
+          /usr/local/bin/containerpilot
+          /bin/consul agent -server
+            -bootstrap
+            -config-dir=/etc/consul
+            -ui-dir /ui
+            -client=0.0.0.0
+        restart: always
+        ports:
+          - "8500:8500"

@@ -3,11 +3,12 @@
   "logging": {
     "level": "{{ if .LOG_LEVEL }}{{ .LOG_LEVEL }}{{ else }}INFO{{ end }}"
   },
+  "preStart": [ "/usr/local/bin/manage.sh", "preStart" ],
   "services": [
     {
       "name": "nats",
       "port": 6222,
-      "health": "/usr/local/bin/health.sh",
+      "health": ["/usr/local/bin/manage.sh", "health"],
       "poll": 5,
       "ttl": 25
     }

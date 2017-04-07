@@ -13,7 +13,6 @@ services:
           - CONSUL=consul
           - CONSUL_AGENT=1
           - LOG_LEVEL=debug
-          - NATS_USER=wyatt
     consul:
         image: autopilotpattern/consul:0.7.2-r0.8
         command: >

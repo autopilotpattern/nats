@@ -1,0 +1,29 @@
+version: '2.1'
+services:
+    nats:
+        image: autopilotpattern/nats:0.9.6-r1.0.0
+        restart: always
+        mem_limit: 512m
+        expose:
+          - 4222
+          - 6222
+          - 8222
+        labels:
+          - triton.cns.services=nats
+        env_file: _env
+    consul:
+        image: autopilotpattern/consul:0.7.2-r0.8
+        command: >
+          /usr/local/bin/containerpilot
+          /bin/consul agent -server
+            -bootstrap
+            -config-dir=/etc/consul
+            -ui-dir /ui
+            -client=0.0.0.0
+        restart: always
+        mem_limit: 128m
+        ports:
+          - 8500
+        labels:
+          - triton.cns.services=nats-consul
+        env_file: _env

@@ -10,6 +10,10 @@ This image uses ContainerPilot to register NATS with Consul. As you scale out th
 - _NATS_USER_ username to use for cluster authorization, defaults to ruser
 - _NATS_PASSWORD_ password to user for cluster authorization, defaults to T0pS3cr3t
 
+## Prerequisites
+
+Please either run `setup.sh` to create a `_env` file or create one manually. The `setup.sh` script expects that the [triton-cli](https://www.npmjs.com/package/triton) is installed and a profile is setup for docker to connect to a Triton datacenter.
+
 ## Example Usage
 
 ```

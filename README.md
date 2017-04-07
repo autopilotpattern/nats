@@ -7,6 +7,8 @@ This image uses ContainerPilot to register NATS with Consul. As you scale out th
 - _CONSUL_ hostname where consul can be found
 - _CONSUL_AGENT_ determines if the consul agent is executed in the container
 - _LOG_LEVEL_ ContainerPilot specific log level to use, defaults to INFO
+- _NATS_USER_ username to use for cluster authorization, defaults to ruser
+- _NATS_PASSWORD_ password to user for cluster authorization, defaults to T0pS3cr3t
 
 ## Example Usage
 

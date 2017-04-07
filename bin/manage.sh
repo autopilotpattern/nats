@@ -10,7 +10,7 @@ onStart() {
     waitForLeader
 
     if [[ ! -f /etc/gnatsd.conf ]]; then
-        consul-template -consul=${CONSUL}:8500 -once -template=/etc/gnatsd.conf.tmpl:/etc/gnatsd.conf
+        consul-template -consul-addr=${CONSUL}:8500 -once -template=/etc/gnatsd.conf.tmpl:/etc/gnatsd.conf
         if [[ $? != 0 ]]; then
             exit 1
         fi

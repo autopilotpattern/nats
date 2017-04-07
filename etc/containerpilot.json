@@ -3,7 +3,6 @@
   "logging": {
     "level": "{{ if .LOG_LEVEL }}{{ .LOG_LEVEL }}{{ else }}INFO{{ end }}"
   },
-  "preStart": [ "/usr/local/bin/manage.sh", "preStart" ],
   "services": [
     {
       "name": "nats",

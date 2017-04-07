@@ -59,7 +59,6 @@ RUN mv /tmp/gnatsd /usr/local/bin/gnatsd \
 COPY etc/* /etc/
 COPY bin/* /usr/local/bin/
 
-RUN apk del unzip ca-certificates
 RUN chmod 500 /usr/local/bin/manage.sh
 
 EXPOSE 4222 8222 6222

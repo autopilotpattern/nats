@@ -1,7 +1,7 @@
 version: '2.1'
 services:
     nats:
-        image: autopilotpattern/nats:0.9.6-r1.0.0
+        image: autopilotpattern/nats:0.9.6-r0.0.1
         restart: always
         mem_limit: 512m
         expose:

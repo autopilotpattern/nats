@@ -18,14 +18,6 @@ RUN curl --retry 7 --fail -vo /tmp/consul.zip "https://releases.hashicorp.com/co
     && rm /tmp/consul.zip \
     && mkdir -p /opt/consul/config
 
-# Add Consul-CLI
-ENV CONSUL_CLI_VER=0.3.1 \
-    CONSUL_CLI_SHA256=037150d3d689a0babf4ba64c898b4497546e2fffeb16354e25cef19867e763f1
-RUN curl -Lso /tmp/consul-cli.tgz "https://github.com/CiscoCloud/consul-cli/releases/download/v${CONSUL_CLI_VER}/consul-cli_${CONSUL_CLI_VER}_linux_amd64.tar.gz" \
-    && echo "${CONSUL_CLI_SHA256}  /tmp/consul-cli.tgz" | sha256sum -c \
-    && tar zxf /tmp/consul-cli.tgz -C /usr/local/bin --strip-components 1 \
-    && rm /tmp/consul-cli.tgz
-
 # Add Consul-Template
 ENV CONSUL_TEMPLATE_VER=0.18.2 \
     CONSUL_TEMPLATE_SHA256=6fee6ab68108298b5c10e01357ea2a8e4821302df1ff9dd70dd9896b5c37217c

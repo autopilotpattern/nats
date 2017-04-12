@@ -1,0 +1,22 @@
+version: '2.1'
+services:
+    nats:
+        extends:
+          file: docker-compose.yml
+          service: nats
+        build: ./
+        links:
+          - consul:consul
+        ports:
+          - 4222
+          - 6222
+          - 8222
+        environment:
+          - CONSUL=consul
+          - LOG_LEVEL=DEBUG
+    consul:
+        extends:
+          file: docker-compose.yml
+          service: consul
+        ports:
+          - "8500:8500"

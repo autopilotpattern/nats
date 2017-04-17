@@ -7,7 +7,13 @@
 port: 4222
 
 # HTTP monitoring port
-monitor_port: 8222
+http: 0.0.0.0:8222
+
+authorization {
+  user: {{ $user }}
+  password: {{ $password }}
+  timeout:  2
+}
 
 # This is for clustering multiple servers together.
 cluster {

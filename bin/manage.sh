@@ -6,7 +6,12 @@ onStart() {
     waitForLeader
 
     if [[ ! -f /etc/gnatsd.conf ]]; then
-        consul-template -consul-addr=${CONSUL}:8500 -once -template=/etc/gnatsd.conf.tmpl:/etc/gnatsd.conf
+        CONSUL_HOST=${CONSUL}
+        if [[ $CONSUL_AGENT -eq 1 ]]; then
+          logDebug "Using consul agent"
+          CONSUL_HOST="localhost"
+        fi
+        consul-template -consul-addr=$CONSUL_HOST:8500 -once -template=/etc/gnatsd.conf.tmpl:/etc/gnatsd.conf
         if [[ $? != 0 ]]; then
             exit 1
         fi
@@ -18,7 +23,7 @@ onStart() {
 health() {
     logDebug "health"
 
-    /usr/bin/curl -o /dev/null --fail -s http://localhost:8222
+    /usr/bin/curl -o /dev/null --fail -s http://127.0.0.1:8222/varz
     if [[ $? -ne 0 ]]; then
         echo "NATS monitor endpoint failed"
         exit 1

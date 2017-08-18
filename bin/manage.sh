@@ -16,8 +16,13 @@ onStart() {
             exit 1
         fi
     fi
+}
 
-    exec gnatsd -c /etc/gnatsd.conf $*
+onChange() {
+    logDebug "onChange"
+
+    consul-template -consul-addr=$CONSUL_HOST:8500 -once -template=/etc/gnatsd.conf.tmpl:/etc/gnatsd.conf
+    pkill -SIGHUP gnatsd
 }
 
 health() {
@@ -56,6 +61,7 @@ logDebug() {
 
 help() {
     echo "Usage: ./manage.sh onStart        => first-run configuration"
+    echo "       ./manage.sh onChange       => reload configuration"
     echo "       ./manage.sh health         => health check NATS"
 }
 

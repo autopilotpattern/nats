@@ -11,7 +11,7 @@ http: 0.0.0.0:8222
 
 authorization {
   user: {{ $user }}
-  password: {{ $password }}
+  password: "{{ $password }}"
   timeout:  2
 }
 
@@ -25,7 +25,7 @@ cluster {
   # e.g. --routes=nats-route://ruser:T0pS3cr3t@otherdockerhost:6222
   authorization {
     user: {{ $user }}
-    password: {{ $password }}
+    password: "{{ $password }}"
     timeout: 2
   }
 
